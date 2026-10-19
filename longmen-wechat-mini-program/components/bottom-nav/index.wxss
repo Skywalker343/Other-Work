@@ -1,0 +1,9 @@
+.bottom-nav { position: fixed; z-index: 4; left: 0; right: 0; bottom: 0; height: calc(112rpx + env(safe-area-inset-bottom)); padding: 10rpx 14rpx calc(10rpx + env(safe-area-inset-bottom)); display: grid; grid-template-columns: repeat(5,1fr); align-items: center; background: rgba(13,20,27,.98); border-top: 1rpx solid rgba(198,166,107,.16); box-sizing: border-box; }
+.nav-item,.nav-scan { min-width: 0; padding: 0; margin: 0; border: 0; background: transparent; color: #857f74; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.nav-item::after,.nav-scan::after { border: 0; }
+.nav-icon { height: 41rpx; line-height: 40rpx; font-size: 35rpx; }
+.nav-label { font-size: 17rpx; }
+.nav-item.active { color: #e4c988; }
+.nav-scan { width: 82rpx; height: 82rpx; justify-self: center; margin-top: -31rpx; border: 2rpx solid #d2b278; border-radius: 50%; background: radial-gradient(circle at 40% 30%,#d9bd7e,#a98145); color: #211b12; box-shadow: 0 0 0 9rpx #121b24,0 8rpx 20rpx rgba(0,0,0,.32); }
+.scan-symbol { font-size: 38rpx; line-height: 39rpx; }
+.scan-label { font-size: 14rpx; margin-top: -5rpx; }

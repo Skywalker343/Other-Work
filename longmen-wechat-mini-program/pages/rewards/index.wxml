@@ -1,0 +1,30 @@
+<view class="app-page">
+  <top-bar language="{{language}}" brand="{{ui.brand}}" app-title="{{ui.appTitle}}" role-label="{{roleLabel}}" language-button="{{ui.languageButton}}" choose-identity="{{ui.chooseIdentity}}" bind:togglelanguage="onToggleLanguage" bind:switchidentity="onSwitchIdentity" />
+  <ar-stage id="arStage" language="{{language}}" image="{{stageImage}}" place="{{stagePlace}}" hint="{{stageHint}}" is-complete="{{isComplete}}" bind:cluefound="onClueFound" />
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="screen-content">
+      <view class="section-head">
+        <view><text class="eyebrow">{{ui.rewardCounter}}</text><text class="section-title">{{ui.rewardsTitle}}</text></view>
+        <text class="score-pill">{{points}} {{ui.score}}</text>
+      </view>
+      <view wx:if="{{isComplete}}" class="token-panel gift-panel">
+        <image src="/images/longmen-token.webp" mode="aspectFit" />
+        <view><text class="token-title">{{ui.giftUnlocked}}</text><text class="token-copy">{{giftRegistered?ui.giftRegistered:ui.giftExplain}}</text></view>
+      </view>
+      <view wx:if="{{isComplete}}" class="gift-action">
+        <button class="button {{giftRegistered?'button-quiet':'button-primary'}} button-block" disabled="{{giftRegistered}}" bindtap="onGiftRedeem">{{giftRegistered?ui.registered:ui.registerGift}}</button>
+      </view>
+      <view wx:else class="reward-state">{{ui.remainingTasks}}{{totalTasks-completedCount}}{{ui.tasksForToken}}{{points}}{{ui.pointsCanRedeem}}</view>
+      <text class="field-label coupon-heading">{{ui.couponsTitle}}</text>
+      <view wx:for="{{coupons}}" wx:key="id" class="reward-card">
+        <text class="reward-icon">{{item.icon}}</text>
+        <view class="reward-detail"><text class="reward-title">{{item.title}}</text><text class="reward-description">{{item.detail}}<text wx:if="{{item.redeemed}}"> · {{ui.couponClaimed}}</text></text></view>
+        <text wx:if="{{item.redeemed}}" class="reward-cost">{{ui.couponClaimed}}</text>
+        <button wx:else class="button button-quiet button-small" disabled="{{!item.enough}}" data-coupon="{{item.id}}" bindtap="onCouponRedeem">{{item.cost}} {{ui.score}}</button>
+      </view>
+      <text class="reward-note">{{ui.rewardPrototype}}</text>
+      <button class="button button-quiet button-block reset-button" bindtap="onResetProgress">{{ui.reset}}</button>
+    </view>
+  </scroll-view>
+  <bottom-nav active="rewards" language="{{language}}" has-role="{{hasRole}}" bind:navigate="onNavigate" />
+</view>

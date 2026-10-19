@@ -1,0 +1,15 @@
+<view class="topbar">
+  <view class="brand">
+    <view class="brand-mark">令</view>
+    <view class="brand-copy">
+      <text class="brand-location">{{brand}}</text>
+      <text class="brand-title">{{appTitle}}</text>
+    </view>
+  </view>
+  <view class="header-actions">
+    <button class="language-toggle" bindtap="onLanguageTap">{{languageButton}}</button>
+    <button class="role-badge" bindtap="onIdentityTap" aria-label="{{chooseIdentity}}">
+      <text class="badge-dot"></text><text class="role-label">{{roleLabel}}</text><text class="chevron">⌄</text>
+    </button>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/identity/index",
+    "pages/route/index",
+    "pages/tasks/index",
+    "pages/task-detail/index",
+    "pages/fragments/index",
+    "pages/rewards/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#111922",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "龙门令",
+    "backgroundColor": "#111922",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "位置信息用于显示嘉峪关关城任务路线与附近任务点"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

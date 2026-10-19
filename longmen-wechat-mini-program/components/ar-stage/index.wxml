@@ -1,0 +1,36 @@
+<view class="camera-stage">
+  <image class="scene-image" src="{{image}}" mode="aspectFill" aria-label="{{language==='en'?'AR scene photograph':'嘉峪关关城实景照片'}}" />
+  <view class="scene-wash"></view>
+  <view class="scene-topline">
+    <view class="scene-chip"><view class="live-dot"></view><text>{{language==='en'?'AR SCENE PREVIEW':'AR 实景预览'}}</text></view>
+    <button class="location-chip" bindtap="onLocate">⌖ {{locationLabel}}</button>
+  </view>
+  <view class="scan-reticle"><view class="corner tl"></view><view class="corner tr"></view><view class="corner bl"></view><view class="corner br"></view><view class="scan-line"></view></view>
+  <view class="floating-relic">
+    <view class="relic-glow"></view><view class="relic-glyph">令</view><text class="relic-distance">{{language==='en'?'Token clue · Scan to discover':'龙门令碎片 · 扫描发现任务点'}}</text>
+  </view>
+  <view class="scene-bottomline">
+    <view class="scene-caption"><text class="scene-location">{{place}}</text><text class="scene-hint">{{hint}}</text></view>
+    <button class="scan-button" bindtap="openScanner">⌗ {{language==='en'?'Scan':'扫描'}}</button>
+  </view>
+</view>
+<view wx:if="{{scannerVisible}}" class="modal-scrim" catchtap="closeScanner">
+  <view class="scanner-sheet" catchtap="stopTap">
+    <view class="sheet-grab"></view>
+    <view class="sheet-heading">
+      <view><text class="sheet-eyebrow">{{language==='en'?'SCENE CLUE SCANNER':'现场线索识别'}}</text><text class="sheet-title">{{language==='en'?'Scan a mission point':'扫描景区任务点'}}</text></view>
+      <button class="close-button" bindtap="closeScanner">×</button>
+    </view>
+    <view class="scanner-feed">
+      <image src="{{image}}" mode="aspectFill" class="scanner-image" />
+      <view class="scanner-shade"></view>
+      <view class="scanner-frame"><view class="corner tl"></view><view class="corner tr"></view><view class="corner bl"></view><view class="corner br"></view><view class="scan-line"></view></view>
+      <view class="scan-target"><text class="target-star">✦</text><text class="scan-aim">{{language==='en'?'Point at a mission marker or building':'将手机对准任务牌或现场建筑'}}</text><text class="scan-status">{{scanStatus}}</text></view>
+    </view>
+    <view class="scan-actions">
+      <button class="button button-quiet" bindtap="onScanCode">{{language==='en'?'Open WeChat scanner':'使用微信扫码'}}</button>
+      <button class="button button-primary" bindtap="onSimulateScan">{{language==='en'?'Simulate nearby clue':'模拟扫描附近线索'}} →</button>
+    </view>
+    <text class="sheet-footnote">{{language==='en'?'Use only while safely stopped. Live launch needs site-approved QR / NFC markers.':'请在安全停留处操作；正式项目需接入经景区核准的二维码 / NFC 点位。'}}</text>
+  </view>
+</view>

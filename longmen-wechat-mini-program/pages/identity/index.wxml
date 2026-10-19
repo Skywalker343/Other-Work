@@ -1,0 +1,31 @@
+<view class="app-page">
+  <top-bar language="{{language}}" brand="{{ui.brand}}" app-title="{{ui.appTitle}}" role-label="{{roleLabel}}" language-button="{{ui.languageButton}}" choose-identity="{{ui.chooseIdentity}}" bind:togglelanguage="onToggleLanguage" bind:switchidentity="onSwitchIdentity" />
+  <ar-stage id="arStage" language="{{language}}" image="{{stageImage}}" place="{{stagePlace}}" hint="{{stageHint}}" is-complete="{{isComplete}}" bind:cluefound="onClueFound" />
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="screen-content">
+      <text class="eyebrow">{{ui.identityEyebrow}}</text>
+      <view class="hero-title"><text>{{language==='en'?'Enter the pass':'游客入关'}}</text><text>{{language==='en'?'Choose your journey':'选择游览身份'}}</text></view>
+      <text class="intro-copy">{{ui.identityIntro}}</text>
+      <view class="name-wrap">
+        <text class="field-label">{{ui.nameLabel}}</text>
+        <input class="name-input" maxlength="16" value="{{playerName}}" placeholder="{{ui.namePlaceholder}}" bindinput="onNameInput" />
+      </view>
+      <view class="role-grid">
+        <button class="role-card guard" data-role="guard" bindtap="onChooseRole">
+          <text class="role-kicker">{{ui.guardRoleKicker}}</text>
+          <text class="role-title">{{language==='en'?'Ming Garrison':'大明边军'}}</text>
+          <text class="role-copy">{{ui.guardIntro}}</text>
+          <text class="role-link">{{ui.enterGuard}}　→</text>
+        </button>
+        <button class="role-card caravan" data-role="caravan" bindtap="onChooseRole">
+          <text class="role-kicker">{{ui.caravanRoleKicker}}</text>
+          <text class="role-title">{{language==='en'?'Western Caravan':'西域商队'}}</text>
+          <text class="role-copy">{{ui.caravanIntro}}</text>
+          <text class="role-link">{{ui.enterCaravan}}　→</text>
+        </button>
+      </view>
+      <text class="form-note">{{ui.demoNote}}</text>
+    </view>
+  </scroll-view>
+  <bottom-nav active="identity" language="{{language}}" has-role="{{hasRole}}" bind:navigate="onNavigate" />
+</view>

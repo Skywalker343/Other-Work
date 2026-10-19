@@ -1,0 +1,7 @@
+<view class="bottom-nav">
+  <button class="nav-item {{active==='route'?'active':''}}" data-target="route" bindtap="onNavigate"><text class="nav-icon">⌖</text><text class="nav-label">{{labels[language].route}}</text></button>
+  <button class="nav-item {{active==='tasks' || active==='task-detail'?'active':''}}" data-target="tasks" bindtap="onNavigate"><text class="nav-icon">☷</text><text class="nav-label">{{labels[language].tasks}}</text></button>
+  <button class="nav-scan" data-target="scan" bindtap="onNavigate"><text class="scan-symbol">⌗</text><text class="scan-label">{{labels[language].scan}}</text></button>
+  <button class="nav-item {{active==='fragments'?'active':''}}" data-target="fragments" bindtap="onNavigate"><text class="nav-icon">◈</text><text class="nav-label">{{labels[language].fragments}}</text></button>
+  <button class="nav-item {{active==='rewards'?'active':''}}" data-target="rewards" bindtap="onNavigate"><text class="nav-icon">✦</text><text class="nav-label">{{labels[language].rewards}}</text></button>
+</view>

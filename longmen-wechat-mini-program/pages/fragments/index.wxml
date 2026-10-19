@@ -1,0 +1,25 @@
+<view class="app-page">
+  <top-bar language="{{language}}" brand="{{ui.brand}}" app-title="{{ui.appTitle}}" role-label="{{roleLabel}}" language-button="{{ui.languageButton}}" choose-identity="{{ui.chooseIdentity}}" bind:togglelanguage="onToggleLanguage" bind:switchidentity="onSwitchIdentity" />
+  <ar-stage id="arStage" language="{{language}}" image="{{stageImage}}" place="{{stagePlace}}" hint="{{stageHint}}" is-complete="{{isComplete}}" bind:cluefound="onClueFound" />
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="screen-content">
+      <view class="section-head">
+        <view><text class="eyebrow">{{ui.fragmentEyebrow}}</text><text class="section-title">{{ui.inventory}}</text></view>
+        <text class="score-pill">{{completedCount}} / {{totalTasks}}</text>
+      </view>
+      <view class="fragment-summary"><view><text class="eyebrow">{{ui.fragmentLegend}}</text><text class="fragment-title">{{isComplete?ui.tokenComplete:ui.tokenIncomplete}}</text></view><text class="score-pill">{{points}} {{ui.score}}</text></view>
+      <view class="fragment-grid">
+        <view wx:for="{{taskSlots}}" wx:key="id" class="fragment-slot {{item.found?'found':''}}">
+          <text class="slot-state">{{item.state}}</text><text class="fragment-glyph">{{item.glyph}}</text><text class="fragment-label">{{item.label}}</text>
+        </view>
+      </view>
+      <view class="token-panel">
+        <image src="/images/longmen-token.webp" mode="aspectFit" />
+        <view><text class="token-title">{{isComplete?ui.tokenGift:ui.tokenPending}}</text><text class="token-copy">{{isComplete?ui.allTasksDone:ui.tokenProgress}}</text></view>
+      </view>
+      <button class="button {{isComplete?'button-primary':'button-quiet'}} button-block" bindtap="onNavigate" data-target="{{isComplete?'rewards':'tasks'}}">{{isComplete?ui.redeemGift:ui.continueFind}}　→</button>
+      <text class="reward-note">{{ui.userGuide}}</text>
+    </view>
+  </scroll-view>
+  <bottom-nav active="fragments" language="{{language}}" has-role="{{hasRole}}" bind:navigate="onNavigate" />
+</view>

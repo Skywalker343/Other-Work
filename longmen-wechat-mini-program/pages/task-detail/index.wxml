@@ -1,0 +1,34 @@
+<view class="app-page">
+  <top-bar language="{{language}}" brand="{{ui.brand}}" app-title="{{ui.appTitle}}" role-label="{{roleLabel}}" language-button="{{ui.languageButton}}" choose-identity="{{ui.chooseIdentity}}" bind:togglelanguage="onToggleLanguage" bind:switchidentity="onSwitchIdentity" />
+  <ar-stage id="arStage" language="{{language}}" image="{{stageImage}}" place="{{stagePlace}}" hint="{{stageHint}}" is-complete="{{isComplete}}" bind:cluefound="onClueFound" />
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="screen-content" wx:if="{{selectedTask && !selectedTask.done}}">
+      <view class="section-head">
+        <view><text class="eyebrow">{{ui.npcInteraction}}</text><text class="section-title">{{selectedTask.title}}</text></view>
+        <text class="score-pill">+{{selectedTask.points}} {{ui.score}}</text>
+      </view>
+      <view class="mission-location"><text>⌖　{{selectedTask.place}}</text><text>{{ui.tokenFragment}} · {{selectedTask.shardLabel}}</text></view>
+      <view class="photo-tip"><text class="photo-tip-label">{{ui.photoSpot}}</text><text class="photo-tip-copy">{{selectedTask.photo}}</text></view>
+      <view class="npc-card">
+        <image class="npc-portrait" src="{{role.portrait}}" mode="aspectFill" />
+        <view class="npc-copy"><text class="npc-label">NPC · {{role.npc}}</text><text class="npc-line">{{selectedTask.npcLine}}</text><text class="npc-help">{{ui.interactionHelp}}</text></view>
+        <text class="npc-stamp">关</text>
+      </view>
+      <text class="mission-copy">{{selectedTask.line}}</text>
+      <view wx:if="{{selectedTask.id==='c5'}}" class="rule-note">{{ui.proposedWest}}</view>
+      <text class="field-label">{{selectedTask.question}}</text>
+      <view class="choice-grid">
+        <button wx:for="{{selectedTask.options}}" wx:key="*this" class="choice-button {{selectedAnswer===index?'selected':''}}" data-answer="{{index}}" bindtap="onSelectAnswer">{{optionLetters[index]}}　{{item}}</button>
+      </view>
+      <button class="button button-primary button-block" disabled="{{selectedAnswer<0}}" bindtap="onCompleteTask">{{ui.collectFragment}}　→</button>
+      <view class="task-footer"><text>{{ui.addedNow}}</text><text>{{completedCount+1===totalTasks?ui.lastFragment:ui.couponHint}}</text></view>
+    </view>
+    <view class="screen-content" wx:elif="{{selectedTask && selectedTask.done}}">
+      <view class="section-head"><view><text class="eyebrow">{{ui.missionCleared}}</text><text class="section-title">{{ui.clueFiled}}</text></view><text class="score-pill">+{{selectedTask.points}} {{ui.score}}</text></view>
+      <view class="token-panel"><image src="/images/longmen-token.webp" mode="aspectFit" /><view><text class="token-title">{{selectedTask.title}}</text><text class="token-copy">{{selectedTask.place}} · {{ui.fragmentCollected}} — {{ui.tokenFragment}} {{selectedTask.shardLabel}}</text></view></view>
+      <button class="button button-primary button-block" bindtap="onNavigate" data-target="tasks">{{ui.taskHeader}}　→</button>
+    </view>
+    <view class="screen-content" wx:else><text class="reward-state">{{ui.allTasksDone}}</text><button class="button button-primary button-block" bindtap="onNavigate" data-target="fragments">{{ui.inventory}}</button></view>
+  </scroll-view>
+  <bottom-nav active="task-detail" language="{{language}}" has-role="{{hasRole}}" bind:navigate="onNavigate" />
+</view>

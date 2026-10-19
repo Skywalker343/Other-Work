@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "top-bar": "/components/top-bar/index",
+    "ar-stage": "/components/ar-stage/index",
+    "bottom-nav": "/components/bottom-nav/index"
+  }
+}

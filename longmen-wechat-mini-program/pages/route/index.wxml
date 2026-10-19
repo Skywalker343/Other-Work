@@ -1,0 +1,36 @@
+<view class="app-page">
+  <top-bar language="{{language}}" brand="{{ui.brand}}" app-title="{{ui.appTitle}}" role-label="{{roleLabel}}" language-button="{{ui.languageButton}}" choose-identity="{{ui.chooseIdentity}}" bind:togglelanguage="onToggleLanguage" bind:switchidentity="onSwitchIdentity" />
+  <ar-stage id="arStage" language="{{language}}" image="{{stageImage}}" place="{{stagePlace}}" hint="{{stageHint}}" is-complete="{{isComplete}}" bind:cluefound="onClueFound" />
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="screen-content">
+      <view class="section-head">
+        <view><text class="eyebrow">{{ui.routeEyebrow}}</text><text class="section-title">{{role.route}}</text></view>
+        <text class="score-pill">{{points}} {{ui.score}}</text>
+      </view>
+      <view class="route-card">
+        <view class="route-card-top">
+          <view><text class="route-name">{{role.name}} · {{ui.recommended}}</text><text class="route-motto">{{role.motto}}</text></view>
+          <view class="route-progress">{{role.duration}}<text>{{ui.completed}} {{completedCount}} / {{totalTasks}}</text></view>
+        </view>
+        <view class="map-frame">
+          <image class="map-base" src="/images/jiayuguan-satellite.webp" mode="widthFix" />
+          <image class="map-overlay" src="{{mapOverlay}}" mode="scaleToFill" />
+        </view>
+        <view class="map-legend">
+          <text><view class="legend-dot guard"></view>{{ui.routeLegendGuard}}</text>
+          <text><view class="legend-dot caravan"></view>{{ui.routeLegendCaravan}}</text>
+        </view>
+        <text class="map-note">{{ui.mapNote}}</text>
+        <button class="map-link" bindtap="onOpenMap">⌖ {{ui.openMap}}</button>
+      </view>
+      <view class="route-stops">
+        <view wx:for="{{role.stops}}" wx:key="*this" class="stop-item">
+          <text class="stop-number">{{index+1}}</text><text class="stop-name">{{item}}</text>
+        </view>
+      </view>
+      <button class="button button-primary button-block" bindtap="onNavigate" data-target="tasks">{{ui.routeButton}}　→</button>
+      <text class="rule-note">{{ui.routeFoot}}</text>
+    </view>
+  </scroll-view>
+  <bottom-nav active="route" language="{{language}}" has-role="{{hasRole}}" bind:navigate="onNavigate" />
+</view>

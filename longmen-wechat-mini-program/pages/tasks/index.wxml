@@ -1,0 +1,23 @@
+<view class="app-page">
+  <top-bar language="{{language}}" brand="{{ui.brand}}" app-title="{{ui.appTitle}}" role-label="{{roleLabel}}" language-button="{{ui.languageButton}}" choose-identity="{{ui.chooseIdentity}}" bind:togglelanguage="onToggleLanguage" bind:switchidentity="onSwitchIdentity" />
+  <ar-stage id="arStage" language="{{language}}" image="{{stageImage}}" place="{{stagePlace}}" hint="{{stageHint}}" is-complete="{{isComplete}}" bind:cluefound="onClueFound" />
+  <scroll-view class="page-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="screen-content">
+      <view class="section-head">
+        <view><text class="eyebrow">{{ui.chaptersLabel}}</text><text class="section-title">{{ui.taskHeader}}</text></view>
+        <text class="score-pill">{{points}} {{ui.score}}</text>
+      </view>
+      <text class="intro-copy">{{name}} · {{ui.taskIntro}}</text>
+      <view class="progress-line"><view style="width:{{progress}}%"></view></view>
+      <view class="task-list">
+        <button wx:for="{{tasks}}" wx:key="id" class="task-row {{item.done?'is-done':''}}" data-task="{{item.id}}" bindtap="onOpenTask">
+          <text class="task-index">{{item.done?'✓':index+1}}</text>
+          <view class="task-info"><text class="task-title">{{item.title}}</text><text class="task-place">{{item.place}} · {{item.done?ui.taskDone:ui.taskPending}}</text></view>
+          <view class="task-reward"><text>{{item.rewardLabel}}</text><text class="task-reward-note">{{item.rewardNote}}</text></view>
+        </button>
+      </view>
+      <text class="map-note">{{ui.scanFirst}}</text>
+    </view>
+  </scroll-view>
+  <bottom-nav active="tasks" language="{{language}}" has-role="{{hasRole}}" bind:navigate="onNavigate" />
+</view>
